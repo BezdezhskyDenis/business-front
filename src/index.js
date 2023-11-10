@@ -7,7 +7,6 @@ import reportWebVitals from "./reportWebVitals";
 // import { BrowserRouter } from "react-router-dom";
 // import { AuthProvider } from "./contexts/auth.context";
 
-
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "bootstrap-icons/font/bootstrap-icons.css";
