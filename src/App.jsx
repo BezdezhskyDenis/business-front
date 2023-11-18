@@ -2,18 +2,16 @@ import './App.css';
 import NavBar from './components/navbar';
 import { Route, Routes } from "react-router-dom";
 import Home from './components/home';
-import { useMode } from './contexts/mode.context';
-// import { useMode } from './hooks/useMode';
+
 function App() {
-  const { mode, icon, handleModeChange} = useMode()
-  // const { handleModeChange, mode, icon} = useMode()
+
 
   return (
     <div className="App">
-     
+     <div ></div>
       <div>
-        <NavBar mode={mode} icon={icon} modeChange={()=>{handleModeChange()}}/>
-        <main>
+        <NavBar/>
+        <main className='flex-fill container mt-3'>
           <Routes>
             <Route path="/" element={<Home />} />
           </Routes>

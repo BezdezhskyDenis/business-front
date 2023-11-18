@@ -21,11 +21,13 @@ export function ModeProvider({ children }) {
     if (mode === "light") {
       setMode("dark");
       setIcon(<i className="bi bi-brightness-high-fill"></i>);
-      document.body.style.backgroundColor = "#050122"; //'#042743'
+      document.documentElement.setAttribute('data-bs-theme', 'dark')
+      // document.body.style.backgroundColor = "#050122"; //'#042743'
     } else {
       setMode("light");
       setIcon(<i className="bi bi-moon-fill"></i>);
-      document.body.style.backgroundColor = "white";
+      document.documentElement.setAttribute('data-bs-theme', 'light')
+      // document.body.style.backgroundColor = "white";
     }
   }
 
