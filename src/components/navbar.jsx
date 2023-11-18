@@ -7,10 +7,10 @@ const NavBar = () => {
   // const { user } = useAuth();
   const { mode, icon, handleModeChange } = useMode()
   const user = [{biz: "t"}]
-  console.log(user[0].biz)
+
 
   return (
-    <nav className="navbar navbar-expand-sm  shadow-sm" data-bs-theme={mode}>
+    <nav className="navbar navbar-expand-sm shadow-sm" data-bs-theme={mode}>
       <div className="container">
         <Link to="/" className="navbar-brand">
           BCard <i className="bi bi-postcard-heart-fill"></i>

@@ -3,7 +3,7 @@ import Card from "./card";
 import {useMyCards} from "../hooks/useMyCards"
 const Home = () => {
   const cards = useMyCards()
-console.log(cards)
+
   return (
     <>
     <PageHeader
@@ -18,7 +18,7 @@ console.log(cards)
         {!cards.length ? (
           <p>no cards...</p>
         ) : (
-          cards.map((card) => <div className="col-sm-6 col-lg-4 mx-auto mb-3"><Card card={card} key={card.id}/></div> )
+          cards.map((card) => <div className=" col-12 col-sm-6 col-lg-4 mx-auto mb-2 p-sm-1" key={card.id}><Card card={card} /></div> )
         )}
       </div>
       </>
