@@ -6,7 +6,7 @@ const NavBar = () => {
   // eslint-disable-next-line no-undef
   // const { user } = useAuth();
   const { mode, icon, handleModeChange } = useMode()
-  const user = [{biz: "t"}]
+  const user = false
 
 
   return (
