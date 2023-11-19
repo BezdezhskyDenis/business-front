@@ -9,7 +9,7 @@ import Joi from "joi";
 import { useState } from "react";
 // import { useAuth } from "../contexts/auth.context";
 
-const SignUp = ({ redirect }) => {
+const CardManager = ({ redirect }) => {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
 
@@ -18,12 +18,11 @@ const SignUp = ({ redirect }) => {
   const form = useFormik({
     validateOnMount: true,
     initialValues: {
-      firstName:"",
-      lastName:"",
-      phone:"",
+      title:"",
+      subtitle:"",
+      description:"",
+      phone: "",
       email: "",
-      password: "",
-      // confPassword:"",
       country: "",
       city: "",
       street: "",
@@ -35,10 +34,9 @@ const SignUp = ({ redirect }) => {
         .max(255)
         .required()
         .email({ tlds: { allow: false } }),
-      firstName: Joi.string().min(3).max(255).required(),
-      lastName: Joi.string().min(3).max(255).required(),
-      password: Joi.string().min(6).max(1024).required(),
-      // confPassword: Joi.string().min(6).max(1024).required(),
+      title: Joi.string().min(3).max(255).required(),
+      subtitle: Joi.string().min(3).max(255).required(),
+      description: Joi.string().min(6).max(1024).required(),
       phone: Joi.string().min(10).max(1024).required(),
       country: Joi.string().min(3).max(1024).required(),
       city: Joi.string().min(3).max(1024).required(),
@@ -74,30 +72,33 @@ const SignUp = ({ redirect }) => {
         
         <div className="row">
         <Input
-          {...form.getFieldProps("firstName")}
+          {...form.getFieldProps("title")}
           type="text"
-          label="First Name"
+          label="Title"
           required
-          error={form.touched.firstName && form.errors.firstName}
+          error={form.touched.title && form.errors.title}
           />
         <Input
+          {...form.getFieldProps("subtitle")}
           type="text"
-          label="Middle Name"
+          label="Subtitle"
+          required
+          error={form.touched.subtitle && form.errors.subtitle}
           />
         <Input
-          {...form.getFieldProps("lastName")}
+          {...form.getFieldProps("description")}
           type="text"
-          label="Last Name"
+          label="Description"
           required
-          error={form.touched.lastName && form.errors.lastName}
+          error={form.touched.description && form.errors.description}
           />
-        <Input
-          {...form.getFieldProps("phone")}
-          type="phone"
-          label="Phone"
-          required
-          error={form.touched.phone && form.errors.phone}
-          />
+          <Input
+            {...form.getFieldProps("phone")}
+            type="phone"
+            label="Phone"
+            required
+            error={form.touched.phone && form.errors.phone}
+            />
         <Input
           {...form.getFieldProps("email")}
           type="email"
@@ -105,13 +106,10 @@ const SignUp = ({ redirect }) => {
           required
           error={form.touched.email && form.errors.email}
           />
-          <Input
-            {...form.getFieldProps("password")}
-            type="password"
-            label="Password"
-            required
-            error={form.touched.password && form.errors.password}
-            />
+        <Input
+          type="text"
+          label="Web"
+          />
         <Input
           type="imageUrl"
           label="Image url"
@@ -156,12 +154,6 @@ const SignUp = ({ redirect }) => {
           type="number"
           label="Zip"
           />
-          <div class= "text-start mb-4">
-            <input class="form-check-input" type="checkbox" name="business" id="business"/>
-            <label class="form-check-label ms-2" for="business">
-            Sig Up as Business
-            </label>
-          </div>
           
           <div className="col-sm-6 my-2">
           <button className="btn btn-outline-danger form-control">
@@ -190,4 +182,4 @@ const SignUp = ({ redirect }) => {
   );
 };
 
-export default SignUp;
+export default CardManager;

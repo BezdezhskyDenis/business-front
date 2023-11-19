@@ -4,6 +4,7 @@ import Footer from './components/footer';
 import { Route, Routes } from "react-router-dom";
 import Home from './components/home';
 import SignUp from './components/signUp';
+import CardManage from './components/cardManage';
 
 function App() {
 
@@ -19,6 +20,9 @@ function App() {
           </Routes>
           <Routes>
             <Route path="/sign-up" element={<SignUp />} />
+          </Routes>
+          <Routes>
+            <Route path="/card-manager" element={<CardManage />} />
           </Routes>
         </main>
         <footer>
