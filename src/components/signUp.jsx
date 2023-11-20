@@ -2,7 +2,7 @@ import { validateFormikUsingJoi } from "../utils/validateFormikUsingJoi";
 import Input from "./common/input";
 import PageHeader from "./common/pageHeader";
 
-import { Navigate, useNavigate } from "react-router-dom";
+// import { Navigate, useNavigate } from "react-router-dom";
 
 import { useFormik } from "formik";
 import Joi from "joi";
@@ -11,7 +11,7 @@ import { useState } from "react";
 
 const SignUp = ({ redirect }) => {
   const [serverError, setServerError] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // const { signUp, user } = useAuth();
 
@@ -30,20 +30,25 @@ const SignUp = ({ redirect }) => {
       houseNumber: "",
     },
     validate: validateFormikUsingJoi({
-      email: Joi.string()
-        .min(2)
-        .max(255)
-        .required()
-        .email({ tlds: { allow: false } }),
-      firstName: Joi.string().min(3).max(255).required(),
-      lastName: Joi.string().min(3).max(255).required(),
-      password: Joi.string().min(6).max(1024).required(),
+      firstName: Joi.string().min(2).max(256).required(),
+      middleName: Joi.string().min(2).max(256),
+      lastName: Joi.string().min(2).max(256).required(),
       // confPassword: Joi.string().min(6).max(1024).required(),
-      phone: Joi.string().min(10).max(1024).required(),
-      country: Joi.string().min(3).max(1024).required(),
-      city: Joi.string().min(3).max(1024).required(),
-      street: Joi.string().min(3).max(1024).required(),
-      houseNumber: Joi.string().min(1).max(1024).required(),
+      phone: Joi.string().min(9).max(11).required(),
+      email: Joi.string()
+      .min(5)
+      .max(255)
+      .required()
+      .email({ tlds: { allow: false } }),
+      password: Joi.string().min(7).max(20).required(),
+      imageUrl: Joi.string().min(14),
+      imageAlt: Joi.string().min(2).max(256),
+      state: Joi.string().min(2).max(256),
+      country: Joi.string().min(2).max(256).required(),
+      city: Joi.string().min(2).max(256).required(),
+      street: Joi.string().min(2).max(256).required(),
+      houseNumber: Joi.number().min(1).max(256).required(),
+      zip: Joi.number().min(2).max(256),
     }),
     // async onSubmit(values) {
     //   try {
@@ -81,8 +86,10 @@ const SignUp = ({ redirect }) => {
           error={form.touched.firstName && form.errors.firstName}
           />
         <Input
+        {...form.getFieldProps("middleName")}
           type="text"
           label="Middle Name"
+          error={form.touched.middleName && form.errors.middleName}
           />
         <Input
           {...form.getFieldProps("lastName")}
@@ -113,16 +120,22 @@ const SignUp = ({ redirect }) => {
             error={form.touched.password && form.errors.password}
             />
         <Input
-          type="imageUrl"
+        {...form.getFieldProps("imageUrl")}
+          type="text"
           label="Image url"
+          error={form.touched.imageUrl && form.errors.imageUrl}
           />
         <Input
-          type="imageAlt"
+        {...form.getFieldProps("imageAlt")}
+          type="text"
           label="Image alt"
+          error={form.touched.imageAlt && form.errors.imageAlt}
           />
         <Input
-          type="state"
+        {...form.getFieldProps("state")}
+          type="text"
           label="State"
+          error={form.touched.state && form.errors.state}
           />
         <Input
           {...form.getFieldProps("country")}
@@ -147,18 +160,20 @@ const SignUp = ({ redirect }) => {
           />
         <Input
           {...form.getFieldProps("houseNumber")}
-          type="text"
+          type="number"
           label="House Number"
           required
           error={form.touched.houseNumber && form.errors.houseNumber}
           />
         <Input
+        {...form.getFieldProps("zip")}
           type="number"
           label="Zip"
+          error={form.touched.zip && form.errors.zip}
           />
           <div class= "text-start mb-4">
-            <input class="form-check-input" type="checkbox" name="business" id="business"/>
-            <label class="form-check-label ms-2" for="business">
+            <input class="form-check-input" type="checkbox" name="isBusiness" id="isBusiness"/>
+            <label class="form-check-label ms-2" for="isBusiness">
             Sig Up as Business
             </label>
           </div>

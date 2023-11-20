@@ -173,7 +173,7 @@ const CardManager = ({ redirect }) => {
             "btn btn-secondary form-control"
           )}
           >
-            Sign Up
+            SUBMIT
           </button>
           </div>
         </div>

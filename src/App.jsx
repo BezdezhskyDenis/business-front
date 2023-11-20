@@ -6,6 +6,10 @@ import Home from './components/home';
 import SignUp from './components/signUp';
 import CardManage from './components/cardManage';
 
+import cardsService from "./services/cardsService";
+
+cardsService.getAllCards().then();
+
 function App() {
 
 
@@ -21,7 +25,7 @@ function App() {
           <Routes>
             <Route path="/sign-up" element={<SignUp />} />
           </Routes>
-          <Routes>
+            <Routes>
             <Route path="/card-manager" element={<CardManage />} />
           </Routes>
         </main>
