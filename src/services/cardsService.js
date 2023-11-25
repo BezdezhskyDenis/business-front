@@ -1,4 +1,4 @@
-// import httpService from "./httpService";
+import httpService from "./httpService";
 
 const API_BASE = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards";
 
@@ -6,6 +6,16 @@ export async function getAllCards() {
   const url = `${API_BASE}`;
   const response = await fetch(url);
   return await response.json();
+}
+
+export async function getMyCards() {
+  const url = `${API_BASE}/my-cards`;
+  const response = await httpService.get(url,{
+    headers: {
+      'x-auth-token': localStorage.token
+    }
+  });
+  return await response;
 }
 
 // export function createCard(card) {
@@ -30,7 +40,7 @@ export async function getAllCards() {
 
 const cardsService = {
   // createCard,
-  // getAll,
+  getMyCards,
   // getCard,
   // deleteCard,
   // updateCard,

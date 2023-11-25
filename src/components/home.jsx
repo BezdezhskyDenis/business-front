@@ -1,8 +1,8 @@
 import PageHeader from "./common/pageHeader";
 import Card from "./card";
-import {useMyCards} from "../hooks/useMyCards"
+import {useAllCards} from "../hooks/useAllCards"
 const Home = () => {
-  const cards = useMyCards()
+  const cards = useAllCards()
   return (
     <>
     <PageHeader

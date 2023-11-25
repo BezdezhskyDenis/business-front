@@ -16,7 +16,7 @@ export async function createUser(user) {
 
 export async function login(credentials) {
   const response = await httpService.post("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/login", credentials);
-  localStorage.setItem(TOKEN_KEY, response.data);
+  localStorage.setItem(TOKEN_KEY, response.data, response);
   refreshTokenHeader();
   return response;
 }
