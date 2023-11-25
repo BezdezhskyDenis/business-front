@@ -6,11 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 
 import { BrowserRouter } from "react-router-dom";
 import { ModeProvider } from "./contexts/mode.context";
-<<<<<<< HEAD
 import { AuthProvider } from "./contexts/auth.context";
-=======
-// import { AuthProvider } from "./contexts/auth.context";
->>>>>>> 481e32ff7ceb6f59cd88fa3e29ea3b00c1b9ba47
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle";
@@ -20,19 +16,11 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-<<<<<<< HEAD
       <AuthProvider>
       <ModeProvider>
         <App />
       </ModeProvider>
       </AuthProvider>
-=======
-      {/* <AuthProvider> */}
-      <ModeProvider>
-        <App />
-      </ModeProvider>
-      {/* </AuthProvider> */}
->>>>>>> 481e32ff7ceb6f59cd88fa3e29ea3b00c1b9ba47
     </BrowserRouter>
    </React.StrictMode>
 );

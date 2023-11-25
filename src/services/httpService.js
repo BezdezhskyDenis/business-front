@@ -16,8 +16,4 @@ const httpService = {
   setCommonHeader,
 };
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 481e32ff7ceb6f59cd88fa3e29ea3b00c1b9ba47
 export default httpService;
