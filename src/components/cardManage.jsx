@@ -2,7 +2,7 @@ import { validateFormikUsingJoi } from "../utils/validateFormikUsingJoi";
 import Input from "./common/input";
 import PageHeader from "./common/pageHeader";
 
-import { Navigate, useNavigate} from "react-router-dom";
+import { Navigate, useNavigate, useParams} from "react-router-dom";
 
 import { useFormik } from "formik";
 import Joi from "joi";
@@ -10,10 +10,10 @@ import { useState } from "react";
 import cardsService from "../services/cardsService"
 import { useCard } from "../hooks/useCardById";
 
-const CardManager = ({ redirect, headTitle }) => {
+const CardManager = ({ redirect, headTitle}) => {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const card = useCard()
 
   const form = useFormik({
@@ -71,7 +71,7 @@ const CardManager = ({ redirect, headTitle }) => {
         // if (bizImage) {
         //   body.bizImage = bizImage;
         // }
-        await cardsService.createCard({...values});
+        await cardsService.updateCard(id,{ ...values});
         navigate("/my-cards");
       } catch (err) {
         if (err.response?.status === 400) {

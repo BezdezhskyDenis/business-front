@@ -7,7 +7,7 @@ const Card = ({
   const { user } = useAuth();
   
   const logInUserCard = (user_id) =>{
-    if(user && user._id === user_id){
+    if(user && (user._id === user_id || user.isAdmin)){
       return true
     }
   }
@@ -25,22 +25,22 @@ const Card = ({
 
         <div className="d-flex mt-2">
           {logInUserCard(user_id)?(
-        <Link to={`/my-cards/edit/${_id}`} className="nav-link p-2">
-        <i className="bi bi-pencil-fill"></i>
-        </Link>
+            <>
+              <Link to={`/my-cards/edit/${_id}`} className="nav-link p-2">
+              <i className="bi bi-pencil-fill"></i>
+              </Link>
+              <Link to={`/my-cards/delete/${_id}/${bizNumber}`} className="nav-link p-2 ">
+              <i className="bi bi-trash3-fill"></i>
+              </Link>
+            </>
           ):(<></>)}
-        {user?.isAdmin &&(
-          <Link to={`/my-cards/delete/${_id}`} className="nav-link p-2 ">
-        <i className="bi bi-trash3-fill"></i>
-        </Link>
-          )}
-        <Link to={`/my-cards/phone/${_id}`} className="nav-link p-2 ms-auto">
-        <i className="bi bi-telephone-fill"></i>
-        </Link>
-        {user?(
-          <Link to={`/my-cards/favorite/${_id}`} className="nav-link p-2">
-        <i className="bi bi-heart-fill"></i>
-        </Link>
+          <Link to={`/my-cards/phone/${_id}`} className="nav-link p-2 ms-auto">
+          <i className="bi bi-telephone-fill"></i>
+          </Link>
+          {user?(
+            <Link to={`/my-cards/favorite/${_id}`} className="nav-link p-2">
+            <i className="bi bi-heart-fill"></i>
+            </Link>
           ):(<></>)}
         </div>
       </div>

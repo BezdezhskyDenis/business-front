@@ -34,20 +34,33 @@ export async function getCard(id) {
   return await response.data
 }
 
-// export function deleteCard(id) {
-//   return httpService.delete(`/cards/${id}`);
-// }
+export async function deleteCard(id,bizNumber) {
+  const url = `${API_BASE}/${id}`;
+  const response = await httpService.delete(url,bizNumber,{
+    headers: {
+      'x-auth-token': localStorage.token
+    }
+  });
+  return response;
+}
 
-// export function updateCard(id, card) {
-//   return httpService.put(`/cards/${id}`, card);
-// }
+export async function updateCard(id, card) {
+  const url = `${API_BASE}/${id}`;
+  console.log(id)
+  const response = await httpService.put(url,card,{
+    headers: {
+      'x-auth-token': localStorage.token
+    }
+  });
+  return response;
+}
 
 const cardsService = {
   createCard,
   getMyCards,
   getCard,
-  // deleteCard,
-  // updateCard,
+  deleteCard,
+  updateCard,
   getAllCards
 };
 
