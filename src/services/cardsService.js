@@ -15,20 +15,24 @@ export async function getMyCards() {
       'x-auth-token': localStorage.token
     }
   });
-  return await response;
+  return response.data;
 }
 
-// export function createCard(card) {
-//   return httpService.post("/cards", card);
-// }
+export async function createCard(card) {
+  const url = `${API_BASE}`;
+  const response = await httpService.post(url,card,{
+    headers: {
+      'x-auth-token': localStorage.token
+    }
+  });
+  return response;
+}
 
-// export function getAll() {
-//   return httpService.get("/cards");
-// }
-
-// export function getCard(id) {
-//   return httpService.get(`/cards/${id}`);
-// }
+export async function getCard(id) {
+  const url = `${API_BASE}/${id}`;
+  const response = await httpService.get(url);
+  return await response.data
+}
 
 // export function deleteCard(id) {
 //   return httpService.delete(`/cards/${id}`);
@@ -39,9 +43,9 @@ export async function getMyCards() {
 // }
 
 const cardsService = {
-  // createCard,
+  createCard,
   getMyCards,
-  // getCard,
+  getCard,
   // deleteCard,
   // updateCard,
   getAllCards

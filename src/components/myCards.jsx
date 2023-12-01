@@ -9,21 +9,24 @@ const MyCards = () => {
     <PageHeader
       title={
         <>
-          My CARDS
+          MY CARDS
         </>
       }
       description="Here you can view your'e business cards"
       />
       <div className="row">
         {!cards.length ? (
-          <p>no cards...</p>
+          <p>no cards found...</p>
         ) : (
           cards.map((card) => <div className=" col-12 col-sm-6 col-lg-4 mx-auto mb-2 p-sm-1" key={card._id}><Card card={card} /></div> )
         )}
         <div className=" col-12 col-sm-6 col-lg-4 mx-auto mb-2 p-sm-1" key={"new"}>
-        <div className="card text-start h-100 text-center">
-        <Link to={`/card-manager`} className="nav-link p-2">
-        <i className="bi bi-file-plus-fill"></i>
+        <div className="card text-start h-100 position-relative">
+        <Link to={`/new-card`} className=" h-100">
+          <span className="p-2 position-absolute top-50 start-50 translate-middle">
+        <i className="bi bi-file-plus-fill fs-1 text-success"></i>
+
+          </span>
         </Link>
         </div>
           </div>

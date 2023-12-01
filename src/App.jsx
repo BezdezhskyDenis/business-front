@@ -9,6 +9,7 @@ import CardManage from './components/cardManage';
 import SignOut from './components/signout';
 import cardsService from "./services/cardsService";
 import MyCards from './components/myCards';
+import CardCreate from './components/cardsCreate';
 
 cardsService.getAllCards().then();
 
@@ -26,8 +27,9 @@ function App() {
           
           <Route path="/sign-in" element={<SignIn redirect="/" />} />
             <Route path="/sign-up" element={<SignUp redirect="/"/>} />
-            <Route path="/sign-out" element={<SignOut />} redirect="/" />
-            <Route path="/card-manager" element={<CardManage />} />
+            <Route path="/sign-out" element={<SignOut  redirect="/" />} />
+            <Route path="/my-cards/edit/:id" element={<CardManage  headTitle="CARD MANAGE" redirect="/my-cards"/>}/>
+            <Route path="/new-card" element={<CardCreate  headTitle="MAKE NEW CARD" redirect="/my-cards"/>}/>
             <Route path="/my-cards" element={<MyCards />} />
           </Routes>
         </main>

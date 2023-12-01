@@ -73,7 +73,7 @@ const SignUp = ({ redirect }) => {
         isBusiness: Joi.boolean()
     }),
     async onSubmit(values) {
-      console.log(values)
+      
       try {
         await signUp({ ...values});
         if (redirect) {
@@ -81,7 +81,6 @@ const SignUp = ({ redirect }) => {
         }
       } catch (err) {
         if (err.response?.status === 400) {
-          console.log("1.",values)
           setServerError(err.response.data);
         }
       }
@@ -154,54 +153,54 @@ const SignUp = ({ redirect }) => {
         {...form.getFieldProps("image.url")}
           type="text"
           label="Image url"
-          error={form.touched.url && form.errors.url}
+          error={form.touched.image?.url && form.errors.url}
           />
         <Input
         {...form.getFieldProps("image.alt")}
           type="text"
           label="Image alt"
-          error={form.touched.alt && form.errors.alt}
+          error={form.touched.image?.alt && form.errors.alt}
           />
         <Input
         {...form.getFieldProps("address.state")}
           type="text"
           label="State"
-          error={form.touched.state && form.errors.state}
+          error={form.touched.address?.state && form.errors.state}
           />
         <Input
           {...form.getFieldProps("address.country")}
           type="text"
           label="Country"
           required
-          error={form.touched.country && form.errors.country}
+          error={form.touched.address?.country && form.errors.country}
           />
         <Input
           {...form.getFieldProps("address.city")}
           type="text"
           label="City"
           required
-          error={form.touched.city && form.errors.city}
+          error={form.touched.address?.city && form.errors.city}
           />
         <Input
           {...form.getFieldProps("address.street")}
           type="text"
           label="Street"
           required
-          error={form.touched.street && form.errors.street}
+          error={form.touched.address?.street && form.errors.street}
           />
         <Input
           {...form.getFieldProps("address.houseNumber")}
           type="number"
           label="House Number"
           required
-          error={form.touched.houseNumber && form.errors.houseNumber}
+          error={form.touched.address?.houseNumber && form.errors.houseNumber}
           />
         <Input
         {...form.getFieldProps("address.zip")}
           type="number"
           label="Zip"
           required
-          error={form.touched.zip && form.errors.zip}
+          error={form.touched.address?.zip && form.errors.zip}
           />
           <Input
           {...form.getFieldProps("isBusiness")}

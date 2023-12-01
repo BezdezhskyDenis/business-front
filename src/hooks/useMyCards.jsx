@@ -14,7 +14,6 @@ export const useMyCards = () => {
      getMyCards();
    
   }, []);
-
   return cards;
 };
 
