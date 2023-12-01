@@ -5,13 +5,20 @@ const Card = ({
 }) => {
 
   const { user } = useAuth();
-  
   const logInUserCard = (user_id) =>{
     if(user && (user._id === user_id || user.isAdmin)){
       return true
     }
   }
-
+const likeCheck = () =>{
+  likes.map((like) => {
+    if (like === user.id){
+      return console.log("true")
+    } return console.log("false")
+  } )
+  // console.log(likes)
+}
+likeCheck()
   return (
     <div className="card text-start h-100">
       <img src={url} className="card-img-top h-100" alt={alt} />

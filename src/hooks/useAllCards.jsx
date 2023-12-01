@@ -16,7 +16,6 @@ export const useAllCards = () => {
      getAllCards();
    
   }, []);
-
   return cards;
 };
 
