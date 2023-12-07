@@ -1,24 +1,30 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/auth.context";
+import cardsService from "../services/cardsService"
+import { useCallback } from "react";
+import { UseLikeCheck } from "../hooks/useLikeCard";
+
 const Card = ({
   card: { address:{country, city, street, houseNumber},image:{alt, url},bizNumber, description, email, image, likes, phone, subtitle, title, user_id, web, _id},
 }) => {
-
   const { user } = useAuth();
   const logInUserCard = (user_id) =>{
     if(user && (user._id === user_id || user.isAdmin)){
       return true
     }
   }
-const likeCheck = () =>{
-  likes.map((like) => {
-    if (like === user.id){
-      return console.log("true")
-    } return console.log("false")
-  } )
-  // console.log(likes)
+  let {cardLike, setCardLike} = UseLikeCheck(likes)
+  const {likeCard} = cardsService
+
+  const likeCardChange = useCallback(async (id) => {
+    await likeCard(id);
+  }, []);
+  
+const handleLikeCard = (id) =>{
+  likeCardChange(id)
+  setCardLike(!cardLike)
 }
-likeCheck()
+
   return (
     <div className="card text-start h-100">
       <img src={url} className="card-img-top h-100" alt={alt} />
@@ -45,9 +51,9 @@ likeCheck()
           <i className="bi bi-telephone-fill"></i>
           </Link>
           {user?(
-            <Link to={`/my-cards/favorite/${_id}`} className="nav-link p-2">
+            <button className={`nav-link p-2 ${cardLike && "text-danger"}`} onClick={() =>{handleLikeCard(_id)}}>
             <i className="bi bi-heart-fill"></i>
-            </Link>
+            </button>
           ):(<></>)}
         </div>
       </div>

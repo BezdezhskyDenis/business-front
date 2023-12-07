@@ -11,6 +11,7 @@ import cardsService from "./services/cardsService";
 import MyCards from './components/myCards';
 import CardCreate from './components/cardsCreate';
 import CardDelete from './components/cardDelete';
+import CardLike from './components/cardLike';
 
 cardsService.getAllCards().then();
 
