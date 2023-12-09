@@ -1,6 +1,7 @@
 import PageHeader from "./common/pageHeader";
 import Card from "./card";
 import {useAllCards} from "../hooks/useAllCards"
+
 const Home = () => {
   const cards = useAllCards()
   return (

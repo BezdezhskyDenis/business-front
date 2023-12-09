@@ -1,16 +1,15 @@
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/auth.context";
 import { useMode } from '../contexts/mode.context';
+import profileImage from "../images/default_profile_pic.png"
+import { useUserData } from "../hooks/useUserData";
 
 const NavBar = () => {
-  // eslint-disable-next-line no-undef
   const { user } = useAuth();
   const { mode, icon, handleModeChange } = useMode()
-  // const user = false
-
-
+  const { image, name } = useUserData()
   return (
-    <nav className="navbar navbar-expand-sm shadow-sm" data-bs-theme={mode}>
+    <nav className={`navbar navbar-expand-sm shadow-sm bg-${mode}`} data-bs-theme={mode}>
       <div className="container">
         <Link to="/" className="navbar-brand">
           BCard <i className="bi bi-postcard-heart-fill"></i>
@@ -49,11 +48,30 @@ const NavBar = () => {
 
           <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
             {user ? (
-              <li className="nav-item">
+              <>
+              <li className="nav-item dropdown text-center mx-auto">
+              <a className="nav-link h-100" data-bs-toggle="dropdown" href="/" role="button" aria-expanded="false" style={{ width: '60px', height: '60px' }}>
+                {
+                  image ? (
+                    <img src={image.url} className="card-img-top rounded-circle" alt={image.alt} />
+                  ):(
+                    <img src={profileImage} className="card-img-top" alt="default" />
+                  )
+                }
+                </a>
+              <ul className="dropdown-menu text-center">
+                <li className="nav-item">
+                  <h4>Hello</h4>
+                  <h5>{name?.first} {name?.middle} {name?.last}</h5>
+                </li>
+                <li className="nav-item">
                 <NavLink to="/sign-out" className="nav-link">
                   SIGN OUT
                 </NavLink>
               </li>
+              </ul>
+            </li>
+              </>
             ) : (
               <>
                 <li className="nav-item">
@@ -69,7 +87,7 @@ const NavBar = () => {
               </>
                 )}
                 <li className="nav-item">
-                <button type="button" className="btn " onClick={() =>{handleModeChange()}}>{icon}</button>
+                <button type="button" className={`btn my-auto ${user && "fs-1"}`} onClick={() =>{handleModeChange()}}>{icon}</button>
                 </li>
           </ul>
         </div>

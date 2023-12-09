@@ -7,10 +7,11 @@ import Joi from "joi";
 import { useState } from "react";
 import cardsService from "../services/cardsService"
 import {createCardValidation} from "../utils/validationSchemas";
-
+import { useAlert } from "../contexts/alert.context";
 const CardCreate = ({ redirect, headTitle }) => {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
+  const { alert, handleAlertChange } = useAlert();
 
   const form = useFormik({
     validateOnMount: true,
@@ -43,9 +44,11 @@ const CardCreate = ({ redirect, headTitle }) => {
     async onSubmit(values) {
       try {
         await cardsService.createCard({...values});
-        navigate("/my-cards");
+        handleAlertChange("new card was created", "success");
+        navigate("/my-cards")
       } catch (err) {
         if (err.response?.status === 400) {
+          handleAlertChange(err.response.data, "danger");
           setServerError(err.response.data);
         }
       }
@@ -54,6 +57,7 @@ const CardCreate = ({ redirect, headTitle }) => {
 
   const cancelButton = () =>{
     resetForm()
+    handleAlertChange("card create was canceled", "info")
     navigate(redirect);
   }
 
@@ -66,10 +70,8 @@ const CardCreate = ({ redirect, headTitle }) => {
       <PageHeader
         title={headTitle}
       />
-
       <form onSubmit={form.handleSubmit}>
         {serverError && <div className="alert alert-danger">{serverError}</div>}
-
         <div className="row">
         <Input
           {...form.getFieldProps("title")}

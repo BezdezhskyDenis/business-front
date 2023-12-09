@@ -2,7 +2,7 @@ import httpService from "./httpService";
 import jwtDecode from "jwt-decode";
 
 const TOKEN_KEY = "token";
-
+const API_BASE = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users"
 refreshTokenHeader();
 
 export function refreshTokenHeader() {
@@ -10,12 +10,14 @@ export function refreshTokenHeader() {
 }
 
 export async function createUser(user) {
-  const response = await httpService.post("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users", user);
+  const url = `${API_BASE}`
+  const response = await httpService.post(url, user);
   return response;
 }
 
 export async function login(credentials) {
-  const response = await httpService.post("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users/login", credentials);
+  const url = `${API_BASE}/login`
+  const response = await httpService.post(url, credentials);
   localStorage.setItem(TOKEN_KEY, response.data, response);
   refreshTokenHeader();
   return response;
@@ -38,6 +40,21 @@ export function getUser() {
     return null;
   }
 }
+export async function getUserById() {
+  try {
+    const token = getJWT();
+    const userId = jwtDecode(token)
+    const url = `${API_BASE}/${userId._id}`
+    const response = await httpService.get(url,{
+    headers: {
+      'x-auth-token': token
+    }
+  });
+  return await response.data
+  } catch {
+    return [];
+  }
+}
 
 const usersService = {
   createUser,
@@ -45,6 +62,7 @@ const usersService = {
   logout,
   getUser,
   getJWT,
+  getUserById,
 };
 
 export default usersService;

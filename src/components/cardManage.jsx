@@ -8,12 +8,15 @@ import { useState } from "react";
 import cardsService from "../services/cardsService"
 import { useCard } from "../hooks/useCardById";
 import { manageCardValidation } from "../utils/validationSchemas";
+import { useAlert } from "../contexts/alert.context";
+// import PageAlert from "./common/alert";
 
 const CardManager = ({ redirect, headTitle}) => {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
   const card = useCard()
+  const { handleAlertChange } = useAlert();
 
   const form = useFormik({
     validateOnMount: true,
@@ -49,10 +52,12 @@ const CardManager = ({ redirect, headTitle}) => {
     async onSubmit(values) {
       try {
         await cardsService.updateCard(id,{ ...values});
+        handleAlertChange("card modify was succeeded", "success")
         navigate("/my-cards");
       } catch (err) {
         if (err.response?.status === 400) {
           setServerError(err.response.data);
+          handleAlertChange(err.response.data, "danger")
         }
       }
     },
@@ -60,6 +65,7 @@ const CardManager = ({ redirect, headTitle}) => {
   });
   const cancelButton = () =>{
     resetForm()
+    handleAlertChange("card modify was canceled", "info")
     navigate(redirect);
   }
 
@@ -72,8 +78,7 @@ const CardManager = ({ redirect, headTitle}) => {
       <PageHeader
         title={headTitle}
       />
-
-      <form onSubmit={form.handleSubmit}>
+    <form onSubmit={form.handleSubmit}>
         {serverError && <div className="alert alert-danger">{serverError}</div>}
 
         <div className="row">

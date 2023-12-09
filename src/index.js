@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { ModeProvider } from "./contexts/mode.context";
 import { AuthProvider } from "./contexts/auth.context";
+import { AlertProvider } from "./contexts/alert.context";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle";
@@ -18,7 +19,9 @@ root.render(
     <BrowserRouter>
       <AuthProvider>
       <ModeProvider>
+        <AlertProvider>
         <App />
+        </AlertProvider>
       </ModeProvider>
       </AuthProvider>
     </BrowserRouter>

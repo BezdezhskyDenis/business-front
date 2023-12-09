@@ -6,10 +6,12 @@ import { useFormik } from "formik";
 import Joi from "joi";
 import { useState } from "react";
 import { useAuth } from "../contexts/auth.context";
+import { useAlert } from "../contexts/alert.context";
 
 const SignUp = ({ redirect }) => {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
+  const { handleAlertChange } = useAlert();
 
   const { signUp, user } = useAuth();
 
@@ -75,11 +77,13 @@ const SignUp = ({ redirect }) => {
       try {
         await signUp({ ...values});
         if (redirect) {
+          handleAlertChange("signUp success, now you need to log in", "success")
           navigate(redirect);
         }
       } catch (err) {
         if (err.response?.status === 400) {
           setServerError(err.response.data);
+          handleAlertChange(err.response.data, "warning")
         }
       }
     },

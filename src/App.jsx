@@ -12,22 +12,23 @@ import MyCards from './components/myCards';
 import CardCreate from './components/cardsCreate';
 import CardDelete from './components/cardDelete';
 import FavCards from './components/favCards';
-
+import PageAlert from './components/common/alert';
+import { useAlert } from './contexts/alert.context';
 cardsService.getAllCards().then();
 
 function App() {
-
+  const { alert, alertType } = useAlert();
 
   return (
     <div className="App">
-      <header className="pb-3">
+      <header className="pb-3 sticky-top">
         <NavBar />
+        {alert && <PageAlert  />}
       </header>
         <main className='flex-fill container mt-3'>
           <Routes>
             <Route path="/" element={<Home />} />
-          
-          <Route path="/sign-in" element={<SignIn redirect="/" />} />
+            <Route path="/sign-in" element={<SignIn redirect="/" />} />
             <Route path="/sign-up" element={<SignUp redirect="/"/>} />
             <Route path="/sign-out" element={<SignOut  redirect="/" />} />
             <Route path="/my-cards/edit/:id" element={<CardManage  headTitle="CARD MANAGE" redirect="/my-cards"/>}/>

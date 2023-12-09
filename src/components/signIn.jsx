@@ -1,17 +1,17 @@
 import { useState } from "react";
 import PageHeader from "./common/pageHeader";
 import Input from "./common/input";
-
 import { useFormik } from "formik";
 import Joi from "joi";
 import { validateFormikUsingJoi } from "../utils/validateFormikUsingJoi";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth.context";
-// import FormButtons from "./common/formButtons"
+import { useAlert } from "../contexts/alert.context";
 
 const SignIn = ({ redirect }) => {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
+  const { handleAlertChange } = useAlert();
 
   const { user, login } = useAuth();
 
@@ -33,11 +33,13 @@ const SignIn = ({ redirect }) => {
         await login(values);
 
         if (redirect) {
+          handleAlertChange("log in success", "success")
           navigate(redirect);
         }
       } catch (err) {
         if (err.response?.status === 400) {
           setServerError(err.response.data);
+          handleAlertChange(err.response.data, "warning")
         }
       }
     },

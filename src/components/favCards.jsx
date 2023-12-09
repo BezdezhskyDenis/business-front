@@ -2,7 +2,6 @@ import PageHeader from "./common/pageHeader";
 import Card from "./card";
 import { Link } from "react-router-dom";
 import {useFavCards} from "../hooks/useFavCard"
-import cardsService from "../services/cardsService";
 
 const FavCards = () => {
   const cards = useFavCards()
