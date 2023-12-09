@@ -15,11 +15,6 @@ const MyCards = () => {
       description="Here you can view your'e business cards"
       />
       <div className="row">
-        {!cards.length ? (
-          <p>no cards found...</p>
-        ) : (
-          cards.map((card) => <div className=" col-12 col-sm-6 col-lg-4 mx-auto mb-2 p-sm-1" key={card._id}><Card card={card} /></div> )
-        )}
         <div className=" col-12 col-sm-6 col-lg-4 mx-auto mb-2 p-sm-1" key={"new"}>
         <div className="card text-start h-100 position-relative">
         <Link to={`/new-card`} className=" h-100">
@@ -30,6 +25,11 @@ const MyCards = () => {
         </Link>
         </div>
           </div>
+        {!cards.length ? (
+          <p>no cards found...</p>
+        ) : (
+          cards.map((card) => <div className=" col-12 col-sm-6 col-lg-4 mx-auto mb-2 p-sm-1" key={card._id}><Card card={card} /></div> )
+        )}
       </div>
       </>
   );

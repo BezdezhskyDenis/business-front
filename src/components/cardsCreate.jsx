@@ -1,14 +1,12 @@
 import { validateFormikUsingJoi } from "../utils/validateFormikUsingJoi";
 import Input from "./common/input";
 import PageHeader from "./common/pageHeader";
-
 import { Navigate, useNavigate} from "react-router-dom";
-
 import { useFormik } from "formik";
 import Joi from "joi";
 import { useState } from "react";
 import cardsService from "../services/cardsService"
-
+import {createCardValidation} from "../utils/validationSchemas";
 
 const CardCreate = ({ redirect, headTitle }) => {
   const [serverError, setServerError] = useState("");
@@ -17,24 +15,7 @@ const CardCreate = ({ redirect, headTitle }) => {
   const form = useFormik({
     validateOnMount: true,
     initialValues: {
-      title: "",
-      subtitle: "",
-      description: "",
-      phone: "",
-      email: "",
-      web: "",
-      image:{
-        url: "https://cdn.pixabay.com/photo/2016/04/20/08/21/entrepreneur-1340649_960_720.jpg",
-        alt: "default picture",
-      },
-      address:{
-        state: "",
-        country: "",
-        city: "",
-        street: "",
-        houseNumber: "",
-        zip: "",
-      },
+      ...createCardValidation
     },
     validate: validateFormikUsingJoi({
       title: Joi.string().min(2).max(256).required(),
@@ -61,11 +42,6 @@ const CardCreate = ({ redirect, headTitle }) => {
     }),
     async onSubmit(values) {
       try {
-        // const { bizImage, ...body } = values;
-
-        // if (bizImage) {
-        //   body.bizImage = bizImage;
-        // }
         await cardsService.createCard({...values});
         navigate("/my-cards");
       } catch (err) {
@@ -84,9 +60,6 @@ const CardCreate = ({ redirect, headTitle }) => {
   const resetForm = () =>{
     form.resetForm();
   }
-  // if (user) {
-  //   return <Navigate to="/" />;
-  // }
 
   return (
     <>
@@ -193,16 +166,16 @@ const CardCreate = ({ redirect, headTitle }) => {
           />
 
           <div className="col-sm-6 my-2">
-          <button className="btn btn-outline-danger form-control">
+          <button className="btn btn-outline-danger form-control"type="button" onClick={cancelButton}>
             Cancel
           </button>
           </div>
           <div className="ms-auto col-sm-6 my-2">
-          <button className="btn btn-outline-info form-control" type="button" onClick={cancelButton}>
+          <button className="btn btn-outline-info form-control" type="button" onClick={resetForm}>
           <i className="bi bi-arrow-repeat"></i>
           </button>
           </div>
-          <div className="mx-auto col-sm-12 col-md-8 col-lg-6 my-2 mb-4" type="button" onClick={resetForm}>
+          <div className="mx-auto col-sm-12 col-md-8 col-lg-6 my-2 mb-4" type="submit">
           <button type="submit" disabled={!form.isValid}
           className={form.isValid? (
             "btn btn-success form-control"

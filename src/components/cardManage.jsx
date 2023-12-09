@@ -1,14 +1,13 @@
 import { validateFormikUsingJoi } from "../utils/validateFormikUsingJoi";
 import Input from "./common/input";
 import PageHeader from "./common/pageHeader";
-
 import { Navigate, useNavigate, useParams} from "react-router-dom";
-
 import { useFormik } from "formik";
 import Joi from "joi";
 import { useState } from "react";
 import cardsService from "../services/cardsService"
 import { useCard } from "../hooks/useCardById";
+import { manageCardValidation } from "../utils/validationSchemas";
 
 const CardManager = ({ redirect, headTitle}) => {
   const [serverError, setServerError] = useState("");
@@ -20,24 +19,7 @@ const CardManager = ({ redirect, headTitle}) => {
     validateOnMount: true,
     initialValues: card
     ? {
-      title: card.title,
-      subtitle: card.subtitle,
-      description: card.description,
-      phone: card.phone,
-      email: card.email,
-      web: card.web,
-      image:{
-        url: card.image?.url,
-        alt: card.image?.alt,
-      },
-      address:{
-        state: card.address?.state,
-        country: card.address?.country,
-        city: card.address?.city,
-        street: card.address?.street,
-        houseNumber: card.address?.houseNumber,
-        zip: card.address?.zip,
-      },
+      ...manageCardValidation(card)
     } 
     : {},
     enableReinitialize: true,
@@ -66,11 +48,6 @@ const CardManager = ({ redirect, headTitle}) => {
     }),
     async onSubmit(values) {
       try {
-        // const { bizImage, ...body } = values;
-
-        // if (bizImage) {
-        //   body.bizImage = bizImage;
-        // }
         await cardsService.updateCard(id,{ ...values});
         navigate("/my-cards");
       } catch (err) {
@@ -89,10 +66,6 @@ const CardManager = ({ redirect, headTitle}) => {
   const resetForm = () =>{
     form.resetForm();
   }
-
-  // if (user) {
-  //   return <Navigate to="/" />;
-  // }
 
   return (
     <>
@@ -224,5 +197,4 @@ const CardManager = ({ redirect, headTitle}) => {
     </>
   );
 };
-
 export default CardManager;
