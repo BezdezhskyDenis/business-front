@@ -11,7 +11,7 @@ import cardsService from "./services/cardsService";
 import MyCards from './components/myCards';
 import CardCreate from './components/cardsCreate';
 import CardDelete from './components/cardDelete';
-import CardLike from './components/cardLike';
+import FavCards from './components/favCards';
 
 cardsService.getAllCards().then();
 
@@ -34,6 +34,7 @@ function App() {
             <Route path="/my-cards/delete/:id/:bizNumber" element={<CardDelete/>}/>
             <Route path="/new-card" element={<CardCreate  headTitle="MAKE NEW CARD" redirect="/my-cards"/>}/>
             <Route path="/my-cards" element={<MyCards />} />
+            <Route path="/fav-cards" element={<FavCards />} />
           </Routes>
         </main>
         <footer>

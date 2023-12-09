@@ -40,7 +40,7 @@ const NavBar = () => {
               )}
               {user ? (
             <li className="nav-item">
-              <NavLink to="/about" className="nav-link">
+              <NavLink to="/fav-cards" className="nav-link">
                 FAV CARDS
               </NavLink>
             </li>

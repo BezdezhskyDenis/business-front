@@ -13,8 +13,9 @@ const Card = ({
       return true
     }
   }
-  let {cardLike, setCardLike} = UseLikeCheck(likes)
-  const {likeCard} = cardsService
+    let {cardLike, setCardLike} = UseLikeCheck(likes, user)
+  
+    const {likeCard} = cardsService
 
   const likeCardChange = useCallback(async (id) => {
     await likeCard(id);

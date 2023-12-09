@@ -8,8 +8,10 @@ export const UseLikeCheck = (likes) =>{
     
     useEffect(() => {
         const checkLike = async () => {
+            if (user){
             const foundLike = Boolean(likes.find((like) => like === user._id));
             setCardLike(foundLike);
+            }
         };
         checkLike(); 
       }, []);
