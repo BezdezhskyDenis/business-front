@@ -5,7 +5,7 @@ import { useCallback } from "react";
 import { UseLikeCheck } from "../hooks/useLikeCard";
 
 const Card = ({
-  card: { address:{country, city, street, houseNumber},image:{alt, url},bizNumber, description, email, image, likes, phone, subtitle, title, user_id, web, _id},
+  card: { address:{country, city, street, houseNumber},image:{alt, url},bizNumber, description, likes, phone, subtitle, title, user_id, web, _id},
 }) => {
   const { user } = useAuth();
   const logInUserCard = (user_id) =>{
@@ -27,17 +27,20 @@ const handleLikeCard = (id) =>{
 }
 
   return (
-    <div className="card text-start h-100">
-      <img src={url} className="card-img-top h-100" alt={alt} />
+    <div className="card text-start h-100 position-relative">
+      <div className="mb-5" style={{transform: "rotate(0)"}}>
+      <img src={url} className="card-img-top" alt={alt} />
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
-        <p className="card-text">{description}</p>
+        <p className="card-text">{subtitle}</p>
         <hr/>
         <p className="card-text m-0 p-0"><b>Phone: </b>{phone}</p>
         <p className="card-text p-0 m-0"><b>Address: </b>{street} {houseNumber}, {city}</p>
         <p className="card-text p-0 m-0"><b>Card number: </b>{bizNumber}</p>
-
-        <div className="d-flex mt-2">
+      <Link to={`/card/${_id}`} className="stretched-link"></Link>
+      </div>
+      </div>
+        <div className="d-flex m-2 position-absolute bottom-0">
           {logInUserCard(user_id)?(
             <>
               <Link to={`/my-cards/edit/${_id}`} className="nav-link p-2">
@@ -57,7 +60,6 @@ const handleLikeCard = (id) =>{
             </button>
           ):(<></>)}
         </div>
-      </div>
     </div>
   );
 };

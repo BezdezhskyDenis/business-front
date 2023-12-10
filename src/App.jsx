@@ -14,6 +14,8 @@ import CardDelete from './components/cardDelete';
 import FavCards from './components/favCards';
 import PageAlert from './components/common/alert';
 import { useAlert } from './contexts/alert.context';
+import BusinessCardPage from './components/businessCard';
+
 cardsService.getAllCards().then();
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
             <Route path="/sign-up" element={<SignUp redirect="/"/>} />
             <Route path="/sign-out" element={<SignOut  redirect="/" />} />
             <Route path="/my-cards/edit/:id" element={<CardManage  headTitle="CARD MANAGE" redirect="/my-cards"/>}/>
+            <Route path="/card/:id" element={<BusinessCardPage  headTitle="CARD MANAGE" redirect="/"/>}/>
             <Route path="/my-cards/delete/:id/:bizNumber" element={<CardDelete/>}/>
             <Route path="/new-card" element={<CardCreate  headTitle="MAKE NEW CARD" redirect="/my-cards"/>}/>
             <Route path="/my-cards" element={<MyCards />} />

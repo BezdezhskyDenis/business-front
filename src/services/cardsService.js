@@ -31,7 +31,7 @@ export async function createCard(card) {
 export async function getCard(id) {
   const url = `${API_BASE}/${id}`;
   const response = await httpService.get(url);
-  return await response.data
+  return  response.data
 }
 
 export async function deleteCard(id,bizNumber) {
