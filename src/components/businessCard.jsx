@@ -6,7 +6,7 @@ import { useUserData } from "../hooks/useUserData";
 
 const BusinessCardPage = () => {
   const {address, bizNumber, description, email, image, likes, phone, subtitle, title, user_id, web, _id}= useCard()
-  const user = useUserData()
+
   return (
     <>
     <div className="row my-4">
@@ -22,7 +22,6 @@ const BusinessCardPage = () => {
                 <p className="card-text text-center pt-2">{subtitle}</p>
                 <hr/>
                 <p className="card-text"><b>About: </b>{description}</p>
-                <p className="card-text m-0 p-0"><b>Manager: </b>{description}</p>
                 <p className="card-text m-0 p-0"><b>Phone: </b>{phone}</p>
                 <p className="card-text m-0 p-0"><b>Email: </b>{email}</p>
                 <p className="card-text p-0 m-0"><b>Address: </b>{address?.street} {address?.houseNumber}, {address?.city}</p>

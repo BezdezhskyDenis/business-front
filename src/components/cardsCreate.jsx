@@ -8,10 +8,11 @@ import { useState } from "react";
 import cardsService from "../services/cardsService"
 import {createCardValidation} from "../utils/validationSchemas";
 import { useAlert } from "../contexts/alert.context";
+
 const CardCreate = ({ redirect, headTitle }) => {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
-  const { alert, handleAlertChange } = useAlert();
+  const { handleAlertChange } = useAlert();
 
   const form = useFormik({
     validateOnMount: true,

@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
     usersService.logout();
     refreshUser();
   };
-
+  
   return (
     <authContext.Provider
       value={{

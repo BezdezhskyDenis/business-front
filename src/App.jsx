@@ -15,6 +15,7 @@ import FavCards from './components/favCards';
 import PageAlert from './components/common/alert';
 import { useAlert } from './contexts/alert.context';
 import BusinessCardPage from './components/businessCard';
+import About from './components/about';
 
 cardsService.getAllCards().then();
 
@@ -30,8 +31,9 @@ function App() {
         <main className='flex-fill container mt-3'>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
             <Route path="/sign-in" element={<SignIn redirect="/" />} />
-            <Route path="/sign-up" element={<SignUp redirect="/"/>} />
+            <Route path="/sign-up" element={<SignUp redirect="/sign-in"/>} />
             <Route path="/sign-out" element={<SignOut  redirect="/" />} />
             <Route path="/my-cards/edit/:id" element={<CardManage  headTitle="CARD MANAGE" redirect="/my-cards"/>}/>
             <Route path="/card/:id" element={<BusinessCardPage  headTitle="CARD MANAGE" redirect="/"/>}/>

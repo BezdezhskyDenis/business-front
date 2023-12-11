@@ -7,8 +7,8 @@ export const createCardValidation = {
       email: "",
       web: "",
       image:{
-        url: "https://cdn.pixabay.com/photo/2016/04/20/08/21/entrepreneur-1340649_960_720.jpg",
-        alt: "default picture",
+        url: "",
+        alt: "",
       },
       address:{
         state: "",
@@ -16,7 +16,7 @@ export const createCardValidation = {
         city: "",
         street: "",
         houseNumber: "",
-        zip: Number(""),
+        zip: undefined,
       },
 }
 

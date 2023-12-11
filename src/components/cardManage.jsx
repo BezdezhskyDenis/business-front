@@ -9,7 +9,6 @@ import cardsService from "../services/cardsService"
 import { useCard } from "../hooks/useCardById";
 import { manageCardValidation } from "../utils/validationSchemas";
 import { useAlert } from "../contexts/alert.context";
-// import PageAlert from "./common/alert";
 
 const CardManager = ({ redirect, headTitle}) => {
   const [serverError, setServerError] = useState("");

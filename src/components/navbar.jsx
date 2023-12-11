@@ -7,7 +7,7 @@ import { useUserData } from "../hooks/useUserData";
 const NavBar = () => {
   const { user } = useAuth();
   const { mode, icon, handleModeChange } = useMode()
-  const { image, name } = useUserData()
+  const { image, name } = useUserData(user?._id)
   return (
     <nav className={`navbar navbar-expand-sm shadow-sm bg-${mode}`} data-bs-theme={mode}>
       <div className="container">

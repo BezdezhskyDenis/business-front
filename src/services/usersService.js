@@ -40,11 +40,10 @@ export function getUser() {
     return null;
   }
 }
-export async function getUserById() {
+export async function getUserById(id) {
   try {
     const token = getJWT();
-    const userId = jwtDecode(token)
-    const url = `${API_BASE}/${userId._id}`
+    const url = `${API_BASE}/${id}`
     const response = await httpService.get(url,{
     headers: {
       'x-auth-token': token

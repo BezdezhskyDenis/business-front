@@ -51,7 +51,7 @@ const handleLikeCard = (id) =>{
               </Link>
             </>
           ):(<></>)}
-          <Link to={`/my-cards/phone/${_id}`} className="nav-link p-2 ms-auto">
+          <Link to={`/card/${_id}`} className="nav-link p-2 ms-auto">
           <i className="bi bi-telephone-fill"></i>
           </Link>
           {user?(
