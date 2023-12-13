@@ -8,7 +8,7 @@ import { useNavigate, Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth.context";
 import { useAlert } from "../contexts/alert.context";
 
-const SignIn = ({ redirect }) => {
+const SignIn = ({ redirect, headTitle }) => {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
   const { handleAlertChange } = useAlert();
@@ -60,7 +60,7 @@ const SignIn = ({ redirect }) => {
 
   return (
     <>
-      <PageHeader title="Login" description="Login to your account" />
+      <PageHeader title={headTitle} description="Login to your account" />
 
       <form onSubmit={form.handleSubmit}>
         {serverError && <div className="alert alert-danger">{serverError}</div>}

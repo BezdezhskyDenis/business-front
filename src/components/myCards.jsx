@@ -2,16 +2,12 @@ import PageHeader from "./common/pageHeader";
 import Card from "./card";
 import { Link } from "react-router-dom";
 import {useMyCards} from "../hooks/useMyCards"
-const MyCards = () => {
+const MyCards = ({headTitle}) => {
   const cards = useMyCards()
   return (
     <>
     <PageHeader
-      title={
-        <>
-          MY CARDS
-        </>
-      }
+      title={headTitle}
       description="Here you can view your'e business cards"
       />
       <div className="row">

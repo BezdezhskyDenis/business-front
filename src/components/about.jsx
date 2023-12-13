@@ -2,16 +2,11 @@ import PageHeader from "./common/pageHeader";
 import Card from "./card";
 import {useAllCards} from "../hooks/useAllCards"
 
-const About = () => {
+const About = ({headTitle}) => {
   return (
     <>
     <PageHeader
-      title={
-        <>
-          About
-        </>
-      }
-      />
+      title={headTitle}/>
       <div className="text-start mb-4">
         <p>Welcome to BCard!
 Our platform is designed to empower our community to effortlessly create and share their digital visit cards.

@@ -12,16 +12,19 @@ const Footer = () => {
     <div className="border-top py-2 container-fluid">
       <div className="d-flex justify-content-evenly">
         <Link to="/about" className="nav-link">
-          <i className="bi bi-info-circle-fill"></i><br/>about
+          <i className="bi bi-info-circle-fill"></i><br/>About
+        </Link>
+        <Link to="/" className="nav-link">
+          <i className="bi bi-house-fill"></i><br/>Home
         </Link>
         {user?.isBusiness && (
         <Link to="/my-cards" className="nav-link">
-          <i className="bi bi-person-vcard-fill"></i><br/>my cards
+          <i className="bi bi-person-vcard-fill"></i><br/>My cards
         </Link>
         )}
         {user ? (
         <Link to="/fav-cards" className="nav-link">
-        <i className="bi bi-heart-fill"></i><br/>favorites
+        <i className="bi bi-heart-fill"></i><br/>Favorites
         </Link>
         ):(<></>)}
       </div>

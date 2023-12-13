@@ -3,17 +3,13 @@ import Card from "./card";
 import { Link } from "react-router-dom";
 import {useFavCards} from "../hooks/useFavCard"
 
-const FavCards = () => {
+const FavCards = ({headTitle}) => {
   const cards = useFavCards()
 
   return (
     <>
     <PageHeader
-      title={
-        <>
-          Favorite Cards Page
-        </>
-      }
+      title={headTitle}
       description="Here you can find all your'e favorite business cards"
       />
       <div className="row">

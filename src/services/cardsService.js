@@ -4,9 +4,14 @@ const API_BASE = "https://monkfish-app-z9uza.ondigitalocean.app/bcard2/cards";
 
 export async function getAllCards() {
   const url = `${API_BASE}`;
-  const response = await fetch(url);
-  return await response.json();
+  const response = await httpService.get(url);
+  return response.data;;
 }
+// export async function getAllCards() {
+//   const url = `${API_BASE}`;
+//   const response = await fetch(url);
+//   return await response.json();
+// }
 
 export async function getMyCards() {
   const url = `${API_BASE}/my-cards`;

@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useAuth } from "../contexts/auth.context";
 import { useAlert } from "../contexts/alert.context";
 
-const SignUp = ({ redirect }) => {
+const SignUp = ({ redirect, headTitle }) => {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
   const { handleAlertChange } = useAlert();
@@ -103,7 +103,7 @@ const SignUp = ({ redirect }) => {
   return (
     <>
       <PageHeader
-        title="REGISTRATION"
+        title={headTitle}
       />
 
       <form onSubmit={form.handleSubmit}>

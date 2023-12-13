@@ -3,14 +3,18 @@ import { useAuth } from "../contexts/auth.context";
 import { useMode } from '../contexts/mode.context';
 import profileImage from "../images/default_profile_pic.png"
 import { useUserData } from "../hooks/useUserData";
+import { useCardsFilterContext } from "../contexts/filter.context";
 
 const NavBar = () => {
   const { user } = useAuth();
   const { mode, icon, handleModeChange } = useMode()
   const { image, name } = useUserData(user?._id)
+  const { handleSearch, searchTerm } = useCardsFilterContext();
+  
+
   return (
-    <nav className={`navbar navbar-expand-sm shadow-sm bg-${mode}`} data-bs-theme={mode}>
-      <div className="container">
+    <nav className={`navbar navbar-expand-md shadow-sm bg-${mode}`} data-bs-theme={mode}>
+      <div className="container align-items-center">
         <Link to="/" className="navbar-brand">
           BCard <i className="bi bi-postcard-heart-fill"></i>
         </Link>
@@ -23,28 +27,31 @@ const NavBar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="main-navbar">
-          <ul className="navbar-nav me-auto mb-2 mb-sm-0">
+        <div className="collapse navbar-collapse" id="main-navbar" >
+          <ul className="navbar-nav me-auto mb-2 mb-sm-0 align-items-center">
             <li className="nav-item">
               <NavLink to="/about" className="nav-link">
-                ABOUT
+                About
               </NavLink>
             </li>
             {user?.isBusiness && (
               <li className="nav-item">
                 <NavLink to="/my-cards" className="nav-link">
-                  MY CARDS
+                  My Cards
                 </NavLink>
               </li>
               )}
               {user ? (
             <li className="nav-item">
               <NavLink to="/fav-cards" className="nav-link">
-                FAV CARDS
+                Favorites
               </NavLink>
             </li>
             ):(<></>)}
           </ul>
+            <form className="d-flex" role="search">
+              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={searchTerm} onChange={(e) => handleSearch(e.target.value)}/>
+            </form>
 
           <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
             {user ? (

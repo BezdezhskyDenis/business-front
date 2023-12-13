@@ -8,6 +8,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ModeProvider } from "./contexts/mode.context";
 import { AuthProvider } from "./contexts/auth.context";
 import { AlertProvider } from "./contexts/alert.context";
+import { CardsFilterProvider } from "./contexts/filter.context";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle";
@@ -16,12 +17,14 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-    {/* <BrowserRouter> */}
+    {/* <BrowserRouter basename={process.env.PUBLIC_URL}> */}
+    <BrowserRouter>
       <AuthProvider>
       <ModeProvider>
         <AlertProvider>
+        <CardsFilterProvider>
         <App />
+        </CardsFilterProvider>
         </AlertProvider>
       </ModeProvider>
       </AuthProvider>
